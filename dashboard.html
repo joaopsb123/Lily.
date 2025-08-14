@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1>Enviar mensagem pelo bot</h1>
+    <label>ID do canal:</label>
+    <input type="text" id="channelId"><br>
+    <label>Mensagem:</label>
+    <input type="text" id="message"><br>
+    <button onclick="sendMessage()">Enviar</button>
+
+    <script>
+        async function sendMessage() {
+            const channelId = document.getElementById('channelId').value;
+            const message = document.getElementById('message').value;
+            await fetch('/api/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ channelId, message })
+            });
+            alert('Mensagem enviada!');
+        }
+    </script>
+</body>
+</html>
