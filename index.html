@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>Meu Bot - Dashboard</title>
+<meta charset="UTF-8">
+<title>Painel Bot</title>
+<style>
+body { font-family: Arial; text-align: center; margin-top: 50px; background: #f5f5f5; }
+button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #7289da; color: white; border: none; border-radius: 5px; }
+button:hover { background: #5b6eae; }
+</style>
 </head>
 <body>
-    <h1>Bem-vindo ao painel do bot!</h1>
-    <p>Faça login para configurar o bot e enviar mensagens.</p>
-    
-    <!-- Botão de login com Discord -->
-    <a href="https://discord.com/oauth2/authorize?client_id=1388158298305597483&response_type=code&redirect_uri=https%3A%2F%2Flily-bot-tau.vercel.app%2Fcallback.html&scope=identify+email+guilds">
-        <button>🔑 Login com Discord</button>
-    </a>
+<h1>Bem-vindo ao painel do bot!</h1>
+<p>Faça login para gerenciar o bot e configurar recursos.</p>
+<a href="https://discord.com/oauth2/authorize?client_id=1388158298305597483&response_type=code&redirect_uri=https%3A%2F%2Flily-bot-tau.vercel.app%2Fcallback.html&scope=identify+email+guilds">
+    <button>🔑 Login com Discord</button>
+</a>
 </body>
 </html>
