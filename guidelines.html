@@ -1,0 +1,289 @@
+<html>
+  <head>
+    <script type="text/javascript">
+function authenticate(p) { output.net.perfectdreams.spicymorenitta.utils.AuthUtils.handlePostAuth(p); };
+
+document.domain = "loritta.website";
+
+function onGoogleRecaptchaLoadCallback() { this['spicy-morenitta'].net.perfectdreams.spicymorenitta.utils.GoogleRecaptchaUtils.onRecaptchaLoadCallback(); };
+
+function onCloudflareTurnstileLoadCallback() { this['spicy-morenitta'].net.perfectdreams.spicymorenitta.utils.CloudflareTurnstileUtils.onRecaptchaLoadCallback(); };
+
+window.addEventListener('load', function () {
+    // Verificar se o usuário está usando o antigo Edge ou MSIE, já que nós não suportamos nenhum desses dois
+    // ; MSIE == MS Internet Explorer
+    // Trident/7.0 == MSIE11
+    if (/(?:\b(MS)?IE\s+|\bTrident\/7\.0;.*\s+rv:|\bEdge\/)(\d+)/.test(navigator.userAgent)) {
+        alert("Youre using an unsupported browser, website features may not work properly!\n\nWe recommend that you change from your browser to...\n\nMozilla Firefox: https://www.mozilla.org/firefox\n\nGoogle Chrome: https://www.google.com/chrome\n\nNew Microsoft Edge: https://www.microsoft.com/edge\n\nFor more info, join the Lorittas Discord Server and contact the support staff: {0}")
+    }
+    // Verificar se o SpicyMorenitta foi carregado corretamente
+    if (window.spicyMorenittaLoaded === undefined) {
+        alert("Something went wrong when loading JavaScript from Lorittas website, website features may not work properly!\n\nCheck if your browser is updated (recommended: Mozilla Firefox, Google Chrome or the New Microsoft Edge) and check if your browser doesnt have a malicious extension or if it isnt blocking external requests.\n\nIf the problem persists, join the Lorittas Discord Server and contact the support staff: {0}")
+    }
+});
+</script>
+    <title>Community Guidelines • Loritta</title>
+
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+<link rel="manifest" href="site.webmanifest" />
+<link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5" />
+<meta name="msapplication-TileColor" content="#5bbad5" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="Stylesheet" type="text/css" href="v2/assets/css/style.css@hash=6ed61790f47b3d9b279440faed48dc08.css">
+    <link rel="Stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v6.6.0/css/all.css">
+    <script src="https://www.googletagmanager.com/gtag/js?id=UA-53518408-9"></script>
+    <script type="text/javascript">window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'UA-53518408-9');</script>
+    <script src="https://web-analytics.perfectdreams.net/js/plausible.js" data-domain="loritta.website" defer="defer"></script>
+    <script src="v2/adsbygoogle.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <script src="https://unpkg.com/htmx-ext-sse@2.2.2/sse.js"></script>
+    <script>/**
+ * Tsukifies a element
+ */
+function tsukify(element) {
+    // Null, bail out!
+    if (element === null)
+        return element
+
+    // Already tsukified, bail out!
+    if (element.isTsukified === true)
+        return element
+
+    element.on = (type, func) => {
+        element.addEventListener(type, func);
+        return element;
+    }
+
+    element.addClass = (clazz) => {
+        element.classList.add(clazz);
+        return element;
+    }
+
+    element.hasClass = (clazz) => {
+        return element.classList.contains(clazz);
+    }
+
+    element.removeClass = (clazz) => {
+        element.classList.remove(clazz);
+        return element;
+    }
+
+    element.toggleClass = (clazz) => {
+        if (element.hasClass(clazz)) {
+            element.removeClass(clazz);
+        } else {
+            element.addClass(clazz);
+        }
+        return element;
+    }
+
+    const originalRemove = element.remove
+    element.remove = () => {
+        originalRemove.call(element)
+        return this;
+    }
+
+    element.whenRemovedFromDOM = (func) => {
+        // Create a MutationObserver to watch for the div being removed from the DOM
+        const observer = new MutationObserver((mutations) => {
+            // console.log("mutation happened")
+            if (!document.contains(element)) {
+                // Div is removed, remove the listener
+                // console.log("bye!!!")
+                func()
+                observer.disconnect() // Stop observing once done
+            }
+        });
+
+        // Start observing the parent of the div for childList changes (additions/removals)
+        console.log(self.parentNode)
+        observer.observe(document.body, { childList: true, subtree: true });
+
+        return this;
+    }
+
+    element.selectFirst = (selector) => {
+        const result = element.querySelector(selector)
+        if (result === null)
+            return
+        return tsukify(result)
+    }
+
+    const originalClosest = element.closest
+    element.closest = (selector) => {
+        const result = originalClosest.call(element, selector)
+        if (result === null)
+            return
+        return tsukify(result)
+    }
+
+    element.isTsukified = true;
+
+    return element;
+}
+
+/**
+ * Gets the parent element of the <script>
+ * @returns {TsukiElement}
+ */
+function me() {
+    const scriptElement = document.currentScript;
+    return tsukify(scriptElement.parentNode);
+}
+
+/**
+ * Wraps document.querySelector
+ * @returns {TsukiElement|null}
+ */
+function selectFirst(selector) {
+    const result = document.querySelector(selector)
+    if (result === null)
+        return null
+    return tsukify(result)
+}</script>
+    <script src="v2/assets/js/app.js@hash=de39cd2750ffcc2ffd463b4d37048428"></script>
+    <script src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=explicit&amp;onload=onGoogleRecaptchaLoadCallback"></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onCloudflareTurnstileLoadCallback"></script>
+<script type="text/javascript">
+  window["nitroAds"] = window["nitroAds"] || {
+    createAd: function() {
+      window.nitroAds.queue.push(["createAd", arguments]);
+    },
+    queue: []
+  };
+</script>
+<script async src="https://s.nitropay.com/ads-595.js"></script>    <link rel="alternate" hreflang="pt-BR" href="br/guidelines.html">
+    <link rel="alternate" hreflang="en" href="guidelines.html">
+    <link rel="alternate" hreflang="es" href="https://loritta.website/es/guidelines">
+    <link rel="alternate" hreflang="pt" href="https://loritta.website/pt/guidelines">
+    <meta name="htmx-config" content="{&quot;attributesToSettle&quot;:[&quot;class&quot;,&quot;style&quot;,&quot;width&quot;,&quot;height&quot;,&quot;disabled&quot;,&quot;checked&quot;],&quot;historyCacheSize&quot;:0,&quot;refreshOnHistoryMiss&quot;:true}">
+    <meta name="theme-color" content="#00c1df">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@LorittaBot">
+    <meta name="twitter:creator" content="@MrPowerGamerBR">
+    <meta content="Loritta's Website" property="og:site_name">
+    <meta content="Hello, my name is Loritta! Just a simple Discord bot with unique features you've never seen before! Made for entertainment, moderation, to help you in day-to-day life and more!" property="og:description">
+    <meta content="Community Guidelines" property="og:title">
+    <meta content="600" property="og:ttl">
+    <meta content="https://loritta.website/assets/img/loritta_gabizinha_v1.png" property="og:image">
+  </head>
+  <body>
+    <div id="loading-screen"><img alt="Loading Spinner" src="assets/img/loritta_loading.png">
+      <div class="loading-text">Carregando...</div>
+    </div>
+    <nav class="navigation-bar fixed" id="navigation-bar">
+      <div class="left-side-entries">
+        <div class="entry loritta-navbar-logo"><a href="index.html" class="home-page" style="font-family: 'Pacifico', cursive; text-transform: none;" >Loritta</a></div>
+        <div class="entry"><a href="us/support.html" class="support"  data-sweet-page="support"><i class="fab fa-discord"></i> Support</a></div>
+        <div class="entry"><a href="us/commands.1.html" class="support"><i class="fas fa-terminal"></i> Commands</a></div>
+        <div class="entry"><a href="daily.html" class="daily"><i class="fas fa-gift"></i> Daily</a></div>
+        <div class="entry"><a href="donate.html" class="donate"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 36 36" style="display: inline-block;width: 1em;height: 1em;stroke-width: 0;stroke: currentColor;fill: currentColor;font-size: inherit;color: inherit;vertical-align: -0.125em;filter: drop-shadow(0 1px rgba(0, 0, 0, 0.2));">
+<path d="M34.347 16.893l-8.899-3.294-3.323-10.891c-.128-.42-.517-.708-.956-.708-.439 0-.828.288-.956.708l-3.322 10.891-8.9 3.294c-.393.146-.653.519-.653.938 0 .418.26.793.653.938l8.895 3.293 3.324 11.223c.126.424.516.715.959.715.442 0 .833-.291.959-.716l3.324-11.223 8.896-3.293c.391-.144.652-.518.652-.937 0-.418-.261-.792-.653-.938z"></path><path d="M14.347 27.894l-2.314-.856-.9-3.3c-.118-.436-.513-.738-.964-.738-.451 0-.846.302-.965.737l-.9 3.3-2.313.856c-.393.145-.653.52-.653.938 0 .418.26.793.653.938l2.301.853.907 3.622c.112.444.511.756.97.756.459 0 .858-.312.97-.757l.907-3.622 2.301-.853c.393-.144.653-.519.653-.937 0-.418-.26-.793-.653-.937zM10.009 6.231l-2.364-.875-.876-2.365c-.145-.393-.519-.653-.938-.653-.418 0-.792.26-.938.653l-.875 2.365-2.365.875c-.393.146-.653.52-.653.938 0 .418.26.793.653.938l2.365.875.875 2.365c.146.393.52.653.938.653.418 0 .792-.26.938-.653l.875-2.365 2.365-.875c.393-.146.653-.52.653-.938 0-.418-.26-.792-.653-.938z"></path>
+</svg> Premium</a></div>
+        <div class="entry"><a href="us/extras.html" class="extras"><i class="fas fa-book"></i> Wiki</a></div>
+        <div class="entry"><a href="https://perfectdreams.store/" class="merch"><i class="fas fa-tshirt"></i> Merch</a></div>
+        <div class="entry"><a href="https://loritta.website/us/blog" class="blog"><i class="fas fa-bullhorn"></i> Blog</a></div>
+        <div class="entry"><a href="https://fanarts.perfectdreams.net/" class="fan-arts"><i class="fas fa-paint-brush"></i> Fan Arts</a></div>
+      </div>
+      <div class="right-side-entries">
+        <div class="entry"><a class="theme-changer" id="theme-changer-button"><i class="fas fa-moon"></i></a></div>
+        <div class="entry" id="locale-changer-button" style="cursor: default;"><i class="fas fa-globe-americas"></i> en-us <i class="fas fa-chevron-down" style="opacity: 0.7;"></i>
+          <div id="languages"></div>
+        </div>
+        <div class="entry"><a id="login-button"><i class="fas fa-sign-in-alt"></i> Login</a></div>
+        <div class="entry" id="hamburger-menu-button"><i class="fas fa-bars"></i></div>
+      </div>
+    </nav>
+    <div class="dummy-navigation-bar" id="dummy-navbar" style="height: 46px;"></div>
+    <div id="content">
+      <div class="odd-wrapper">
+        <div class="media">
+          <div class="media-body">
+            <div style="text-align: center;">
+              <div>
+                <h1>Regras da Loritta</h1>
+              </div>
+              <p>O sonho da Loritta é transformar o mundo em um lugar melhor, divertindo e ajudando as pessoas pelo caminho.</p>
+              <p>Para que ela consiga realizar seu sonho, existem as diretrizes. Apenas as pessoas que desejam que ela consiga atingir seus objetivos, podem se divertir com ela.</p>
+              <p>Aqui estão as regras de uso da Loritta, mas lembre-se que você pode ser banido por algo que não está aqui, então tenha bom senso!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="even-wrapper wobbly-bg">
+        <div class="media">
+          <div class="media-body">
+            <div style="text-align: left;">
+              <div class="title-with-emoji"><img src="https://stuff.loritta.website/emotes/lori-ban-hammer.png" class="emoji-title">
+                <h2>Ações que não serão toleradas</h2>
+              </div>
+              <ul>
+                <li>Não respeitar as diretrizes do Discord.</li>
+                <li>Utilizar conteúdo NSFW em funções e comandos da Loritta ou trocar sonhos por produtos relacionados.</li>
+                <li>Tentar obter vantagens burlando algumas restrições impostas pela Loritta, como criar contas para pegar o daily ou usar outra pessoa para isso.</li>
+                <li>Vender, alugar ou trocar sonhos por dinheiro real, ou algum produto que tem valor monetário real, é PROIBIDO. Caso ofereçam, reporte para a Equipe da Loritta, pois não iremos proteger você de roubos e golpes. Você será banido por comercializar, junto com o vendedor. A regra inclui anunciar a venda ou a procura dos produtos, não anuncie brincando! Não temos como saber se você realmente está. Exemplos do que não pode ser comercializado: Discord Nitro, contas, gift card, dinheiro real, cash em jogos, scripts e etc. Tudo que tenha valor monetário real!</li>
+                <li>Tentar evadir ou bular punições não será tolerado. Evadir o seu ban (criar outra conta para usar a Loritta) fará com que você não seja mais desbanido.</li>
+                <li>Tentar atacar, prejudicar ou derrubar a Loritta ou qualquer posse da DreamLand.</li>
+                <li>Plagiar a Loritta. Tudo bem se inspirar, mas fazer tudo igual não dá.</li>
+                <li>Pedir reembolso ao comprar algo na DreamLand. Entre em contato com o suporte antes de tomar uma decisão precipitada e evite ser banido!</li>
+                <li>A equipe da Loritta não se responsabiliza por prêmios oferecidos em sorteios, eventos e recompensas em outros servidores. Não dá para a gente moderar todos os usos da Loritta em todos os servidores que existem, então o uso do seu raciocínio para descobrir se algo pode ser um golpe é essencial.</li>
+                <li>Enquanto nós não se responsabilizamos por prêmios em outros servidores, nós iremos intervir caso uma pessoa esteja agindo de má fé causando golpes em massa.</li>
+                <li>Acobertar a evasão de ban (usuário banido que criou outra conta para usar a Loritta) faz com que você seja banido junto com o meliante. Bem como não denunciar e ser conivente com quebras de regra.</li>
+                <li>Tentar se passar pela Loritta ou alguém da Equipe, bem como espalhar mentiras sobre quaisquer acontecimentos que podem ter relação, vulgo “fake news”. Isso inclui usar fanarts e o nome dela no Discord, bem como criar bots com o mesmo nome e avatar. Não excluíndo aquele que alegar ter relação oficial com a Loritta ou a Equipe.</li>
+                <li>Ofender, xingar ou sexualizar a Loritta. A regra inclui o ódio gratuito, mesmo que disfarçado de crítica, xingamentos pesados como “puta”, “vagabunda” e relacionados. O usuário que fizer isso e for denunciado, será punido caso tenha sido em local público. Mesmo que ela seja um bot, muitas pessoas trabalham para que ela seja o que é hoje, tais ações desrespeitam isso e por isso você irá perder o privilégio de usá-la.</li>
+                <li>Tentar enganar, ameaçar ou prejudicar qualquer usuário da Loritta dentro da comunidade, durante a sua experiência de uso.</li>
+                <li>Importunar a equipe da Loritta nos servidores oficiais da Loritta ou até mesmo em outros servidores sobre banimentos de amigos/conhecidos fará você ser banido junto com ele. A Loritta tem o sistema de apelo de ban, e o correto é você ir e preencher o formulário de apelo para ser desbanido. O formulário de apelo de ban também serve para banimentos errados ou injustos. Isso inclui ficar mencionando Staffs da Loritta em meios não oficiais buscando ajuda sobre banimentos da Loritta, podendo aumentar seu tempo de ban da Loritta ou até tornando ele permanente.</li>
+                <li>Nós não se responsabilizamos por contas comercializadas/emprestadas/doadas/hackeadas e etc. A responsabilidade do que acontece com a sua conta é sua, se outra pessoa utilizou a sua conta para quebrar as regras quem será banido é você pois a conta é sua. Isto também inclui usar contas de outras pessoas para pegar a recompensa diária da Loritta, pois seus dados estarão diretamente relacionados.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="odd-wrapper wobbly-bg">
+        <div class="media">
+          <div class="media-body">
+            <div style="text-align: center;">
+              <div class="title-with-emoji"><img src="https://stuff.loritta.website/emotes/lori-sob.png" class="emoji-title">
+                <h2>Como fazer um apelo de ban na Loritta</h2>
+              </div>
+              <p>Veja como fazer um apelo de ban para você ter a chance de ser desbanido <a href="extras/faq-loritta/loritta-ban-appeal.html">clicando aqui</a>! Você não precisa fazer o formulário se você não está banido da Loritta.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div>
+        <div class="social-networks"><a href="https://github.com/LorittaBot"><i class="fab fa-github"></i></a><a href="https://x.com/LorittaBot"><i class="fab fa-square-x-twitter"></i></a><a href="https://bsky.app/profile/loritta.website"><i class="fab fa-bluesky"></i></a><a href="https://instagram.com/lorittabot"><i class="fab fa-instagram"></i></a></div>
+        <nav class="navigation-footer">
+          <div class="section-entry">
+            <h3>Loritta Bot</h3>
+<a href="index.html" >Home</a><a href="https://loritta.website/us/discord-bot-brasileiro" >Loritta: Apenas um simples bot brasileiro para o Discord</a><a href="us/dashboard.html">Dashboard</a><a href="us/support.html" >Support</a><a href="us/commands.1.html">Commands</a><a href="donate.html" >Premium</a><a href="sponsors.html" >Sponsors</a><a href="daily.html">Daily</a><a href="https://loritta.website/us/extras/about-loritta-bot">Sobre a Loritta (Bot)</a></div>
+          <div class="section-entry">
+            <h3>Loritta Morenitta</h3>
+<a href="https://loritta.website/us/extras/about-loritta-character">Sobre a Loritta (Personagem)</a><a href="https://fanarts.perfectdreams.net/">Fan Arts</a><a href="https://loritta.website/us/blog" >Blog</a><a href="https://produto.mercadolivre.com.br/MLB-1366127151-caneca-pster-da-loritta-morenitta-novembro-2019-_JM?quantity=1">Merch</a></div>
+          <div class="section-entry">
+            <h3>Resources</h3>
+<a href="guidelines.html" >Community Guidelines</a><a href="us/privacy.html">Terms of Service &amp; Privacy Policy</a></div>
+          <div class="section-entry">
+            <h3>Beyond Loritta</h3>
+<a href="https://sparklypower.net/">SparklyPower: Servidor de Minecraft</a><a href="https://perfectdreams.net/">PerfectDreams</a><a href="https://mrpowergamerbr.com/">MrPowerGamerBR Website</a></div>
+        </nav>
+        <p style="text-align: center;">© MrPowerGamerBR &amp; PerfectDreams 2017-
+          <script>document.write(new Date().getFullYear());</script>
+ — All rights reserved</p>
+        <hr>
+        <div class="call-to-action-footer">
+          <div class="lets-transform">
+            <h2>Let's turn your server into an incredible place, together.</h2>
+            <h3>Join over 300,000 servers and add Loritta, the best bot for Discord!</h3>
+          </div>
+          <div class="add-cta"><a href="https://discord.com/oauth2/authorize?client_id=297153970613387264&amp;scope=identify+guilds+email+bot+applications.commands&amp;permissions=2080374975&amp;response_type=code&amp;redirect_uri=https%3A%2F%2Floritta.website%2Fdashboard" class="add-me button pink shadow big" style="font-size: 1.5em;"><i class="fas fa-plus"></i> Add me!</a></div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
