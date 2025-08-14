@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Callback</title>
+    <script>
+        // Pega o 'code' da URL
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get('code');
+
+        if (code) {
+            // Redireciona para o dashboard (pode anexar o code se quiser)
+            window.location.href = `dashboard.html?code=${code}`;
+        } else {
+            // Se não tiver code, volta para a página inicial
+            window.location.href = 'index.html';
+        }
+    </script>
+</head>
+<body>
+    <p>Redirecionando...</p>
+</body>
+</html>
