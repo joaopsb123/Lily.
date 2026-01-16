@@ -1,0 +1,313 @@
+/* Reset e estilos gerais */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #7289da 0%, #36393f 100%);
+    color: #ffffff;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(54, 57, 63, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #7289da;
+}
+
+header h1 {
+    font-size: 2.5rem;
+    color: #7289da;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #b9bbbe;
+    font-size: 1.1rem;
+}
+
+/* Cards */
+.card {
+    background-color: #2f3136;
+    border-radius: 10px;
+    padding: 25px;
+    margin-bottom: 25px;
+    border-left: 5px solid #7289da;
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    color: #7289da;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Botões */
+.btn-discord {
+    background: linear-gradient(to right, #7289da, #5865f2);
+    color: white;
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn-discord:hover {
+    background: linear-gradient(to right, #5865f2, #4752c4);
+    transform: scale(1.02);
+}
+
+.btn-primary {
+    background-color: #7289da;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-primary:hover {
+    background-color: #5b6eae;
+}
+
+.btn-secondary {
+    background-color: #4f545c;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-secondary:hover {
+    background-color: #686d73;
+}
+
+.btn-logout {
+    background-color: #ed4245;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 15px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.btn-logout:hover {
+    background-color: #c03537;
+}
+
+.btn-simple {
+    background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    color: white;
+    border: none;
+    padding: 20px 40px;
+    font-size: 1.5rem;
+    border-radius: 10px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-simple:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Perfil do usuário */
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: rgba(114, 137, 218, 0.1);
+    border-radius: 10px;
+}
+
+#user-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #7289da;
+}
+
+.user-profile h3 {
+    font-size: 1.3rem;
+    margin-bottom: 5px;
+}
+
+.user-profile p {
+    color: #b9bbbe;
+}
+
+/* Seletores */
+.select-box {
+    width: 100%;
+    padding: 12px;
+    background-color: #202225;
+    color: white;
+    border: 2px solid #7289da;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+/* Área de mensagem */
+.message-box {
+    margin-top: 15px;
+}
+
+textarea {
+    width: 100%;
+    height: 120px;
+    padding: 15px;
+    background-color: #202225;
+    color: white;
+    border: 2px solid #7289da;
+    border-radius: 8px;
+    font-size: 1rem;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.button-group button {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Status */
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding-top: 20px;
+    border-top: 1px solid #4f545c;
+    color: #b9bbbe;
+}
+
+.status-offline {
+    color: #ed4245;
+}
+
+.status-online {
+    color: #3ba55d;
+}
+
+/* Modal */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #2f3136;
+    padding: 30px;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    border: 3px solid #7289da;
+}
+
+.modal-content h3 {
+    color: #3ba55d;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Utilitários */
+.hidden {
+    display: none !important;
+}
+
+.info-text {
+    color: #b9bbbe;
+    font-style: italic;
+    margin-top: 10px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    .button-group button {
+        min-width: 100%;
+    }
+    
+    .user-profile {
+        flex-direction: column;
+        text-align: center;
+    }
+}
