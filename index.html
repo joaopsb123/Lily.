@@ -1,19 +1,109 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Painel Bot</title>
-<style>
-body { font-family: Arial; text-align: center; margin-top: 50px; background: #f5f5f5; }
-button { padding: 10px 20px; font-size: 16px; cursor: pointer; background: #7289da; color: white; border: none; border-radius: 5px; }
-button:hover { background: #5b6eae; }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bot Discord Controller</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-<h1>Bem-vindo ao painel do bot!</h1>
-<p>Faça login para gerenciar o bot e configurar recursos.</p>
-<a href="https://discord.com/oauth2/authorize?client_id=1388158298305597483&response_type=code&redirect_uri=https%3A%2F%2Flily-bot-tau.vercel.app%2Fcallback.html&scope=identify+email+guilds">
-    <button>🔑 Login com Discord</button>
-</a>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-discord"></i> Discord Bot Controller</h1>
+            <p>Controle seu bot de Discord através desta interface web</p>
+        </header>
+
+        <div class="main-content">
+            <!-- Seção de Login -->
+            <div class="card">
+                <h2><i class="fas fa-sign-in-alt"></i> Autenticação</h2>
+                <div id="login-section">
+                    <button id="login-btn" class="btn-discord">
+                        <i class="fab fa-discord"></i> Login com Discord
+                    </button>
+                </div>
+                <div id="user-info" class="hidden">
+                    <div class="user-profile">
+                        <img id="user-avatar" src="" alt="Avatar">
+                        <div>
+                            <h3 id="username">Usuário</h3>
+                            <p id="user-id">ID: </p>
+                        </div>
+                    </div>
+                    <button id="logout-btn" class="btn-logout">
+                        <i class="fas fa-sign-out-alt"></i> Sair
+                    </button>
+                </div>
+            </div>
+
+            <!-- Seção de Servidores e Canais -->
+            <div class="card">
+                <h2><i class="fas fa-server"></i> Servidores</h2>
+                <div id="servers-section" class="hidden">
+                    <label for="servers-select">Selecione um servidor:</label>
+                    <select id="servers-select" class="select-box">
+                        <option value="">Carregando servidores...</option>
+                    </select>
+                    
+                    <div id="channels-section" class="hidden">
+                        <label for="channels-select">Selecione um canal:</label>
+                        <select id="channels-select" class="select-box">
+                            <option value="">Selecione um servidor primeiro</option>
+                        </select>
+                    </div>
+                </div>
+                <p id="no-servers" class="hidden">Você não tem permissão em nenhum servidor.</p>
+            </div>
+
+            <!-- Seção de Envio de Mensagem -->
+            <div class="card">
+                <h2><i class="fas fa-paper-plane"></i> Enviar Mensagem</h2>
+                <div id="message-section" class="hidden">
+                    <div class="message-box">
+                        <label for="message-content">Conteúdo da mensagem:</label>
+                        <textarea id="message-content" placeholder="Digite sua mensagem aqui...">Esta é uma mensagem de teste enviada pelo site!</textarea>
+                        
+                        <div class="button-group">
+                            <button id="send-test-btn" class="btn-primary">
+                                <i class="fas fa-bolt"></i> Enviar Mensagem de Teste
+                            </button>
+                            <button id="send-custom-btn" class="btn-secondary">
+                                <i class="fas fa-paper-plane"></i> Enviar Mensagem Personalizada
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <p id="login-to-send" class="info-text">Faça login para enviar mensagens.</p>
+            </div>
+
+            <!-- Botão Simples (funcionalidade original) -->
+            <div class="card">
+                <h2><i class="fas fa-mouse-pointer"></i> Ação Rápida</h2>
+                <button id="simple-btn" class="btn-simple">
+                    <i class="fas fa-hand-pointer"></i> Clique Aqui
+                </button>
+                <p class="info-text">Este botão envia uma mensagem padrão para o canal configurado.</p>
+            </div>
+        </div>
+
+        <footer>
+            <p>Bot Host: fi4.bot-hosting.net:20956 | Client ID: 1458428006472220672</p>
+            <p id="connection-status" class="status-offline">
+                <i class="fas fa-circle"></i> Status: Desconectado
+            </p>
+        </footer>
+    </div>
+
+    <!-- Modal de Resultado -->
+    <div id="result-modal" class="modal hidden">
+        <div class="modal-content">
+            <h3><i class="fas fa-check-circle"></i> Sucesso!</h3>
+            <p id="modal-message">Mensagem enviada com sucesso!</p>
+            <button id="close-modal" class="btn-primary">Fechar</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
-</html>
+    </html>
