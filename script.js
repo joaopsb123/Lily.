@@ -626,6 +626,44 @@ function validateSendConditions() {
     if (!state.token) {
         showModal('❌ Faça login primeiro!', 'error');
         return false;
+    {
+        
+    if (!state.selectedGuild) {
+    showModal('❌ Selecione um servidor primeiro!', 'error');
+    return false;
+        
     }
     
-    if (!state.s
+    if (!state.selectedChannel) {
+        showModal('❌ Selecione um canal primeiro!', 'error');
+        return false;
+    }
+    
+    return true;
+}
+
+// ============================================
+// FUNÇÕES DE DEBUG/LOG
+// ============================================
+function logState() {
+    console.log('📊 Estado atual:', {
+        user: state.user ? state.user.username : 'null',
+        token: state.token ? 'presente' : 'ausente',
+        guilds: state.guilds.length,
+        channels: state.channels.length,
+        selectedGuild: state.selectedGuild,
+        selectedChannel: state.selectedChannel,
+        botConnected: state.botConnected
+    });
+}
+
+// ============================================
+// EXPORTAÇÕES (para debug)
+// ============================================
+window.appState = state;
+window.appElements = elements;
+window.showModal = showModal;
+window.logState = logState;
+
+console.log('✨ Script.js carregado com sucesso!');
+console.log('🔧 Use logState() para ver o estado atual');
