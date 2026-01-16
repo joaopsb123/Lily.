@@ -52,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
 // Configurar listeners
 function setupEventListeners() {
     loginBtn.addEventListener('click', () => {
-        const authUrl = `https://discord.com/oauth2/authorize?client_id=${CLIENT_ID}&response_type=code&redirect_uri=${REDIRECT_URI}&scope=identify+guilds+bot`;
+        const authUrl = `https://discord.com/oauth2/authorize?client_id=1458428006472220672&response_type=code&redirect_uri=https%3A%2F%2Fmolly-lemon.vercel.app%2Fauth&scope=identify+guilds`;
         window.location.href = authUrl;
     });
     
