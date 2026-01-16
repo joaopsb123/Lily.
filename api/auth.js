@@ -1,20 +1,18 @@
-// api/auth.js - Rota corrigida
 export default async function handler(req, res) {
   // Permitir CORS
-  res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader('Access-Control-Allow-Headers', 'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
   
-  // Handle OPTIONS request
   if (req.method === 'OPTIONS') {
-    res.status(200).end();
-    return;
+    return res.status(200).end();
   }
   
   if (req.method === 'POST') {
     try {
       const { code } = req.body;
+      
+      console.log('🔐 Recebendo código:', code?.substring(0, 10) + '...');
       
       if (!code) {
         return res.status(400).json({ error: 'Código não fornecido' });
@@ -23,6 +21,8 @@ export default async function handler(req, res) {
       const CLIENT_ID = process.env.CLIENT_ID || '1458428006472220672';
       const CLIENT_SECRET = process.env.CLIENT_SECRET || '68c_YaOt8CzhKXCUZROxlzy9R8vDbckj';
       const REDIRECT_URI = process.env.REDIRECT_URI || 'https://molly-lemon.vercel.app/';
+      
+      console.log('🔄 Tentando trocar código por token...');
       
       // Trocar código por token
       const params = new URLSearchParams({
@@ -34,7 +34,7 @@ export default async function handler(req, res) {
         scope: 'identify guilds'
       });
       
-      const response = await fetch('https://discord.com/api/oauth2/token', {
+      const tokenResponse = await fetch('https://discord.com/api/oauth2/token', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/x-www-form-urlencoded',
@@ -42,33 +42,37 @@ export default async function handler(req, res) {
         body: params
       });
       
-      const data = await response.json();
+      const tokenData = await tokenResponse.json();
       
-      if (data.access_token) {
-        // Redirecionar de volta para a página principal com sucesso
-        // Em vez de retornar JSON, podemos redirecionar
-        res.status(200).json({
-          access_token: data.access_token,
-          expires_in: data.expires_in,
-          token_type: data.token_type,
-          redirect: '/?auth=success'
+      console.log('📊 Resposta do Discord:', {
+        hasToken: !!tokenData.access_token,
+        error: tokenData.error,
+        errorDesc: tokenData.error_description
+      });
+      
+      if (tokenData.access_token) {
+        console.log('✅ Token obtido com sucesso!');
+        return res.status(200).json({
+          access_token: tokenData.access_token,
+          expires_in: tokenData.expires_in,
+          token_type: tokenData.token_type
         });
       } else {
-        res.status(400).json({ 
+        console.error('❌ Erro do Discord:', tokenData);
+        return res.status(400).json({
           error: 'Falha na autenticação',
-          details: data 
+          details: tokenData.error_description || tokenData.error
         });
       }
       
     } catch (error) {
-      console.error('Erro no auth:', error);
-      res.status(500).json({ 
+      console.error('💥 Erro no servidor:', error);
+      return res.status(500).json({
         error: 'Erro interno do servidor',
-        message: error.message 
+        message: error.message
       });
     }
-  } else {
-    res.setHeader('Allow', ['POST', 'OPTIONS']);
-    res.status(405).json({ error: `Método ${req.method} não permitido` });
   }
-}
+  
+  return res.status(405).json({ error: 'Método não permitido' });
+        }
