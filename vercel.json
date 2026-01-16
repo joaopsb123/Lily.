@@ -1,0 +1,21 @@
+{
+  "rewrites": [
+    { "source": "/auth", "destination": "/api/callback" },
+    { "source": "/api/auth", "destination": "/api/auth" },
+    { "source": "/api/user", "destination": "/api/user" },
+    { "source": "/api/guilds", "destination": "/api/guilds" },
+    { "source": "/api/send", "destination": "/api/send" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Credentials", "value": "true" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version" }
+      ]
+    }
+  ]
+}
