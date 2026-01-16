@@ -70,7 +70,7 @@ function setupEventListeners() {
 
 // HANDLERS
 async function handleLogin() {
-    const authUrl = `https://discord.com/oauth2/authorize?client_id=${CONFIG.CLIENT_ID}&response_type=code&redirect_uri=${encodeURIComponent(CONFIG.REDIRECT_URI)}&scope=identify%20guilds`;
+    const authUrl = `https://discord.com/oauth2/authorize?client_id=1458428006472220672&response_type=code&redirect_uri=https%3A%2F%2Fmolly-lemon.vercel.app%2Fauth&scope=identify+guilds+email`;
     window.open(authUrl, 'Discord Login', 'width=600,height=700,resizable=yes');
 }
 
