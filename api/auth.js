@@ -13,19 +13,21 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await axios.post('https://discord.com/api/oauth2/token', new URLSearchParams({
+        const params = new URLSearchParams({
             client_id: CLIENT_ID,
             client_secret: CLIENT_SECRET,
             code,
             grant_type: 'authorization_code',
             redirect_uri: REDIRECT_URI,
-            scope: 'identify guilds'
-        }));
+        });
 
-        const token = response.data.access_token;
-        // Redireciona de volta para o index com o token na URL
-        res.redirect(`/?token=${token}`);
+        const response = await axios.post('https://discord.com/api/oauth2/token', params.toString(), {
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+        });
+
+        // Manda o token para o seu index.html via URL
+        return res.redirect(`/?token=${response.data.access_token}`);
     } catch (error) {
-        res.status(500).json({ error: 'Falha na autenticação' });
+        return res.status(500).json({ error: 'Erro no OAuth2', details: error.message });
     }
 }
