@@ -2,61 +2,56 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Molly Dashboard</title>
+    <title>Molly Bot</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="bg-slate-900 text-white flex flex-col items-center justify-center min-h-screen">
-
-    <div id="login-area" class="text-center">
-        <h1 class="text-4xl font-bold mb-6">Molly Bot</h1>
-        <a href="/api/auth" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-bold transition">
-            Clique aqui para Logar com Discord
-        </a>
+<body class="bg-gray-900 text-white p-10 text-center">
+    
+    <div id="login-screen">
+        <h1 class="text-3xl mb-5">Dashboard da Molly</h1>
+        <button onclick="window.location.href='/api/auth'" class="bg-indigo-600 p-4 rounded-lg font-bold">Clique aqui para Logar</button>
     </div>
 
-    <div id="dash" class="hidden w-full max-w-md bg-slate-800 p-8 rounded-2xl shadow-xl">
-        <div class="flex items-center gap-4 mb-6">
-            <img id="avatar" class="w-16 h-16 rounded-full border-2 border-indigo-500">
-            <h2 id="username" class="text-xl font-bold"></h2>
-        </div>
-
-        <label class="block mb-2">Selecione o Canal:</label>
-        <select id="channels" class="w-full bg-slate-700 p-2 rounded mb-4"></select>
-
-        <button onclick="testeBot()" class="w-full bg-green-600 hover:bg-green-700 py-2 rounded font-bold">
-            Enviar Mensagem de Teste
-        </button>
+    <div id="dashboard" class="hidden max-w-md mx-auto bg-gray-800 p-6 rounded-xl">
+        <img id="avatar" class="w-24 h-24 rounded-full mx-auto mb-4 border-4 border-indigo-500">
+        <h2 id="name" class="text-xl font-bold mb-4"></h2>
+        
+        <input type="text" id="channel-id" placeholder="ID do Canal" class="w-full p-2 bg-gray-700 rounded mb-4">
+        <button onclick="enviarMensagem()" class="w-full bg-green-600 p-2 rounded font-bold">Enviar Mensagem de Teste</button>
     </div>
 
     <script>
-        // Logica para carregar dados se logado
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
+        const params = new URLSearchParams(window.location.search);
+        const token = params.get('token');
 
         if (token) {
-            document.getElementById('login-area').classList.add('hidden');
-            document.getElementById('dash').classList.remove('hidden');
-            carregarDados(token);
-        }
-
-        async function carregarDados(tk) {
-            const resp = await fetch('https://discord.com/api/users/@me', {
-                headers: { Authorization: `Bearer ${tk}` }
+            document.getElementById('login-screen').classList.add('hidden');
+            document.getElementById('dashboard').classList.remove('hidden');
+            
+            // Buscar foto de perfil
+            fetch('https://discord.com/api/users/@me', {
+                headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(user => {
+                document.getElementById('name').innerText = user.username;
+                document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
             });
-            const user = await resp.json();
-            document.getElementById('username').innerText = user.username;
-            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
         }
 
-        async function testeBot() {
-            const channelId = document.getElementById('channels').value;
-            await fetch('http://fi4.bot-hosting.net:20956/send-message', {
+        async function enviarMensagem() {
+            const channel = document.getElementById('channel-id').value;
+            // Conecta com o IP do seu Bot Hosting
+            const response = await fetch('http://fi4.bot-hosting.net:20956/send-message', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ channelId: "ID_DO_CANAL", content: "Molly ativa via Web!" })
+                body: JSON.stringify({
+                    channelId: channel,
+                    content: "Molly ativa! Mensagem vinda do site. 🍋"
+                })
             });
-            alert("Comando enviado!");
+            if (response.ok) alert("Mensagem enviada pelo Bot!");
+            else alert("Erro ao conectar com o bot.");
         }
     </script>
 </body>
