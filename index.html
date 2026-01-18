@@ -3,89 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Discord Bot Controller</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Molly Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <div class="container">
-        <h1>🤖 Discord Bot Controller</h1>
-        
-        <!-- Status -->
-        <div class="status">
-            <div id="status-indicator" class="status-offline"></div>
-            <span id="status-text">Desconectado</span>
-        </div>
-        
-        <!-- Login Section -->
-        <div id="login-section" class="card">
-            <h2>🔑 Login com Discord</h2>
-            <button id="login-btn" class="btn-primary">
-                Entrar com Discord
-            </button>
-            <p class="info">Você será redirecionado para autorizar o aplicativo</p>
-        </div>
-        
-        <!-- User Info -->
-        <div id="user-section" class="card hidden">
-            <div class="user-header">
-                <img id="user-avatar" src="" alt="Avatar">
-                <div>
-                    <h3 id="username">Usuário</h3>
-                    <p id="user-tag">#0000</p>
-                </div>
-            </div>
-            <button id="logout-btn" class="btn-secondary">Sair</button>
-        </div>
-        
-        <!-- Guilds Selection -->
-        <div id="guilds-section" class="card hidden">
-            <h2>🏠 Servidores</h2>
-            <select id="guild-select" class="select">
-                <option>Carregando servidores...</option>
-            </select>
-            
-            <div id="channels-section" class="hidden">
-                <h3>📝 Canais de Texto</h3>
-                <select id="channel-select" class="select">
-                    <option>Selecione um canal...</option>
-                </select>
-            </div>
-        </div>
-        
-        <!-- Message Sender -->
-        <div id="message-section" class="card hidden">
-            <h2>✉️ Enviar Mensagem</h2>
-            <textarea id="message-input" placeholder="Digite sua mensagem aqui...">Mensagem de teste do site! 🚀</textarea>
-            <div class="button-group">
-                <button id="send-btn" class="btn-primary">Enviar Mensagem</button>
-                <button id="test-btn" class="btn-secondary">Teste Rápido</button>
-            </div>
-        </div>
-        
-        <!-- Original Simple Button -->
-        <div class="card">
-            <h2>⚡ Ação Rápida</h2>
-            <button id="simple-btn" class="btn-simple">
-                🖱️ Clique Aqui
-            </button>
-            <p class="info">Envia mensagem padrão ao canal selecionado</p>
-        </div>
-        
-        <footer>
-            <p>Bot Host: fi4.bot-hosting.net:20956</p>
-            <p>Client ID: 1458428006472220672</p>
-        </footer>
+<body class="bg-slate-900 text-white flex flex-col items-center justify-center min-h-screen">
+
+    <div id="login-area" class="text-center">
+        <h1 class="text-4xl font-bold mb-6">Molly Bot</h1>
+        <a href="/api/auth" class="bg-indigo-600 hover:bg-indigo-700 px-6 py-3 rounded-lg font-bold transition">
+            Clique aqui para Logar com Discord
+        </a>
     </div>
-    
-    <!-- Result Modal -->
-    <div id="modal" class="modal hidden">
-        <div class="modal-content">
-            <h3 id="modal-title">🎉 Sucesso!</h3>
-            <p id="modal-message">Operação concluída</p>
-            <button id="modal-close" class="btn-primary">OK</button>
+
+    <div id="dash" class="hidden w-full max-w-md bg-slate-800 p-8 rounded-2xl shadow-xl">
+        <div class="flex items-center gap-4 mb-6">
+            <img id="avatar" class="w-16 h-16 rounded-full border-2 border-indigo-500">
+            <h2 id="username" class="text-xl font-bold"></h2>
         </div>
+
+        <label class="block mb-2">Selecione o Canal:</label>
+        <select id="channels" class="w-full bg-slate-700 p-2 rounded mb-4"></select>
+
+        <button onclick="testeBot()" class="w-full bg-green-600 hover:bg-green-700 py-2 rounded font-bold">
+            Enviar Mensagem de Teste
+        </button>
     </div>
-    
-    <script src="script.js"></script>
+
+    <script>
+        // Logica para carregar dados se logado
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
+        if (token) {
+            document.getElementById('login-area').classList.add('hidden');
+            document.getElementById('dash').classList.remove('hidden');
+            carregarDados(token);
+        }
+
+        async function carregarDados(tk) {
+            const resp = await fetch('https://discord.com/api/users/@me', {
+                headers: { Authorization: `Bearer ${tk}` }
+            });
+            const user = await resp.json();
+            document.getElementById('username').innerText = user.username;
+            document.getElementById('avatar').src = `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+        }
+
+        async function testeBot() {
+            const channelId = document.getElementById('channels').value;
+            await fetch('http://fi4.bot-hosting.net:20956/send-message', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ channelId: "ID_DO_CANAL", content: "Molly ativa via Web!" })
+            });
+            alert("Comando enviado!");
+        }
+    </script>
 </body>
-        </html>
+</html>
